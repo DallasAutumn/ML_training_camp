@@ -28,7 +28,7 @@ text_feats = [col for col in features if col not in num_feats]
 
 # 合并之后进行统一编码，防止index冲突
 data = pd.get_dummies(data, columns=text_feats,
-                      prefix=text_feats).dropna(axis=1)
+                      prefix=text_feats).fillna(data.mean())
 features = list(data.columns)
 features.remove('Id')
 train = data.iloc[:1460]
